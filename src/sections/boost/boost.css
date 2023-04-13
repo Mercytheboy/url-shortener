@@ -1,0 +1,27 @@
+.boost {
+  background-color: var(--dark-violet);
+  background-image: url("../../assets/bg-boost-desktop.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+  display: flex;
+  align-items: center;
+}
+
+.boost__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+  .boost {
+    background-color: var(--dark-violet);
+    background-image: url("../../assets/bg-boost-mobile.svg");
+  }
+}

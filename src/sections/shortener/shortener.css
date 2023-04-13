@@ -1,0 +1,44 @@
+.shortener__container {
+  background: url("../../assets/bg-shorten-desktop.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: var(--dark-violet);
+}
+
+.shortener__form {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 90%;
+}
+
+.shortener__form input {
+  flex-grow: 1;
+  border-radius: 4px;
+  outline: 0;
+  border: 0;
+  padding: 1rem;
+}
+
+.shortener__form input:focus {
+  outline: 3px solid var(--red);
+}
+
+.shortener__form input:focus::placeholder {
+  color: var(--red);
+}
+
+@media screen and (max-width: 450px) {
+  .shortener__container {
+    background: url("../../assets/bg-shorten-mobile.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--dark-violet);
+  }
+
+  .shortener__form {
+    flex-direction: column;
+  }
+}
