@@ -55,6 +55,8 @@
   color: cyan;
 }
 
+
+
 @media screen and (max-width: 450px) {
   .shortener__container {
     background: url("../../assets/bg-shorten-mobile.svg");

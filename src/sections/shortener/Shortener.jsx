@@ -6,28 +6,27 @@ function Shortener() {
   const [text, setText] = useState("");
   const [links, setLinks] = useState([]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!text) {
       alert("Input is empty");
     } else {
-      const shortenedLink = async () => {
-        try {
-          const response = await fetch(
-            `https://api.shrtco.de/v2/shorten?url=${text}`
-          );
+      await fetch(`https://api.shrtco.de/v2/shorten?url=${text}`)
+        .then(async response => {
           const data = await response.json();
-          setLinks([
-            ...links,
-            { data: data.result, copied: false, id: links.length },
-          ]);
-          setText("");
-        } catch (err) {
+          if (data.ok) {
+            setLinks([
+              ...links,
+              { data: data.result, copied: false, id: links.length },
+            ]);
+            setText("");
+          } else {
+            alert(`There is an error creating the link ${data.error}`);
+          }
+        })
+        .catch(err => {
           alert(`There is an error creating the link ${err}`);
-        }
-      };
-
-      shortenedLink();
+        });
     }
   };
 
@@ -38,6 +37,22 @@ function Shortener() {
     newLinks.splice(id, 0, mutate);
 
     setLinks(newLinks);
+
+    const timeoutId = setTimeout(() => {
+      setLinks(prevLinks => {
+        const reset = { ...mutate, copied: false };
+        const updatedLinks = prevLinks.filter(link => link.id !== id);
+        updatedLinks.splice(id, 0, reset);
+        return updatedLinks;
+      });
+    }, 2000);
+
+    setTimeouts(prevTimeouts => [
+      ...prevTimeouts.slice(0, id),
+      timeoutId,
+      ...prevTimeouts.slice(id + 1),
+    ]);
+
   };
 
   console.log("links", links);
@@ -59,12 +74,12 @@ function Shortener() {
       </form>
       {links.map((link, id) => (
         <article className="shortened__links " key={id}>
-          <h6>{link?.data?.original_link}</h6>
+          <h6>{link.data.original_link}</h6>
 
           <div>
             <p>{link?.data?.full_short_link}</p>
             <Btn
-              label={link?.copied ? "Copied" : "Copy"}
+              label={link.copied ? "Copied" : "Copy"}
               buttonStyle={"squared"}
               onClick={() => handleCopy(link, id)}
             />
