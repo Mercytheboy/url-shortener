@@ -10,7 +10,6 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  width: 90%;
 }
 
 .shortener__form input {
@@ -22,11 +21,38 @@
 }
 
 .shortener__form input:focus {
-  outline: 3px solid var(--red);
+  outline: 3px solid var(--cyan);
 }
 
 .shortener__form input:focus::placeholder {
-  color: var(--red);
+  color: var(--cyan);
+}
+
+.shortened__links {
+  margin-top: 1rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.shortened__links h6 {
+  font-size: 16px;
+  font-weight: 700;
+  color: gray;
+}
+
+.shortened__links div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.shortened__links div p {
+  color: cyan;
 }
 
 @media screen and (max-width: 450px) {

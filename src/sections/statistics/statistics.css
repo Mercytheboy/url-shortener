@@ -32,7 +32,6 @@
   background-color: var(--cyan);
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
 }
 
 .statistics__cards h3 {
