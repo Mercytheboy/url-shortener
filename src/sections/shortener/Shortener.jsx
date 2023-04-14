@@ -52,40 +52,41 @@ function Shortener() {
       timeoutId,
       ...prevTimeouts.slice(id + 1),
     ]);
-
   };
 
   console.log("links", links);
 
   return (
-    <section className="shortener__container section__padding">
-      <form onSubmit={handleSubmit} className="shortener__form  container">
-        <input
-          type="url"
-          placeholder="Shorten a link here!"
-          value={text}
-          onChange={e => setText(e.target.value)}
-        />
-        <Btn
-          label={"Shorten it!"}
-          buttonStyle={"squared"}
-          onClick={handleSubmit}
-        />
-      </form>
-      {links.map((link, id) => (
-        <article className="shortened__links " key={id}>
-          <h6>{link.data.original_link}</h6>
+    <section className="shortener__container section__padding container">
+      <div className="shortener ">
+        <form onSubmit={handleSubmit} className="shortener__form  ">
+          <input
+            type="url"
+            placeholder="Shorten a link here!"
+            value={text}
+            onChange={e => setText(e.target.value)}
+          />
+          <Btn
+            label={"Shorten it!"}
+            buttonStyle={"squared"}
+            onClick={handleSubmit}
+          />
+        </form>
+        {links.map((link, id) => (
+          <article className="shortened__links " key={id}>
+            <h6>{link.data.original_link}</h6>
 
-          <div>
-            <p>{link?.data?.full_short_link}</p>
-            <Btn
-              label={link.copied ? "Copied" : "Copy"}
-              buttonStyle={"squared"}
-              onClick={() => handleCopy(link, id)}
-            />
-          </div>
-        </article>
-      ))}
+            <div className="newlink">
+              <p>{link?.data?.full_short_link}</p>
+              <Btn
+                label={link.copied ? "Copied" : "Copy"}
+                buttonStyle={"squared"}
+                onClick={() => handleCopy(link, id)}
+              />
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

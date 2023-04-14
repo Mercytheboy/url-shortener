@@ -29,12 +29,13 @@
 }
 
 .shortened__links {
+  width: 100%;
   margin-top: 1rem;
   background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 }
@@ -42,22 +43,25 @@
 .shortened__links h6 {
   font-size: 16px;
   font-weight: 700;
+  max-width: 40%;
   color: gray;
+  word-wrap: break-word;
 }
 
-.shortened__links div {
+.newlink {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 
-.shortened__links div p {
+.newlink p {
   color: cyan;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
-
-
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 768px) {
   .shortener__container {
     background: url("../../assets/bg-shorten-mobile.svg");
     background-position: center;
@@ -66,7 +70,26 @@
     background-color: var(--dark-violet);
   }
 
+  .shortened__links {
+    flex-direction: column;
+  }
+
+  .shortened__links h6 {
+    max-width: 100%;
+  }
+
+  .newlink {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
   .shortener__form {
     flex-direction: column;
+  }
+
+  .newlink {
+    flex-direction: column;
+    width: 100%;
   }
 }
